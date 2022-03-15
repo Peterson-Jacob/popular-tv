@@ -1,7 +1,8 @@
 window.onload = function(){
-
+    const body = document.querySelector('body');
 fetch("https://imdb8.p.rapidapi.com/title/get-top-rated-tv-shows", {
 	"method": "GET",
+  
 
 })
 .then(response => response.json())
@@ -11,7 +12,8 @@ fetch("https://imdb8.p.rapidapi.com/title/get-top-rated-tv-shows", {
     let y = 0;
     const dataArray = [];
     const showArray = [];
-     
+    
+  
     while(data[i]){
         dataArray.push(data[i].id);
         i++;
@@ -22,7 +24,7 @@ fetch("https://imdb8.p.rapidapi.com/title/get-top-rated-tv-shows", {
         y++;  
     };
 
-    for (let x = 0; x < 50; x++) {
+    for (let x = 0; x <= 50; x++) {
         if(x == 0){
         text += "ids=" + showArray[x];
         }else{
@@ -30,24 +32,61 @@ fetch("https://imdb8.p.rapidapi.com/title/get-top-rated-tv-shows", {
         }
     };
 
-    console.log(text);
+    
+     fetch("https://imdb8.p.rapidapi.com/title/get-meta-data?" + text + "&region=US", {
+	"method": "GET",
+   
 
+})
+.then(newResponse => newResponse.json())
+.then(newData =>{
+    
+    let z = 0;
+    const newArray = [];
+    while (newData[showArray[z]]) {
+        newArray.push(newData[showArray[z]]);
+        z++;
+    }
+
+    for(let s = 0; s < newArray.length; s++){
+        const div = document.createElement('div');
+        const img = document.createElement('img');
+        const title = document.createElement('h1');
+        const rate = document.createElement('h2');
+        const series = document.createElement('p');
+        const release = document.createElement('p');
+
+            div.appendChild(img);
+            img.src = newArray[s].title.image.url;
+            img.alt = newArray[s].title.title;
+            div.appendChild(title);
+            title.textContent = newArray[s].title.title;
+            div.appendChild(rate);
+            rate.textContent = "Rating: " + newArray[s].ratings.rating;
+            div.appendChild(series);
+                if(newArray[s].title.seriesEndYear == undefined ){
+                    series.textContent = "Start " + newArray[s].title.seriesStartYear + " - present";
+                }else{
+                    series.textContent = "Start " + newArray[s].title.seriesStartYear + " - End " + newArray[s].title.seriesEndYear;
+                };
+            div.appendChild(release);
+            release.textContent = "Release Date: " + newArray[s].releaseDate;
+            body.appendChild(div);
+        
+        
+        
+    }
+    console.log(newArray[1]);
+    console.log(newArray[13]);
+})
+.catch(err => {
+	console.error(err);
+}); 
     
 })
 .catch(err => {
 	console.error(err);
 });
 
-/*fetch("https://imdb8.p.rapidapi.com/title/get-meta-data?ids=tt4154756&ids=tt5491994&ids=tt0903747&region=US", {
-	"method": "GET",
-
-})
-.then(response => response.json())
-.then(data =>{
-	console.log(data);
-})
-.catch(err => {
-	console.error(err);
-});*/
 
 }
