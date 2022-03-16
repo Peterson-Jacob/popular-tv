@@ -1,8 +1,9 @@
 window.onload = function(){
-    const body = document.querySelector('body');
+    
+    const cont = document.getElementById('container');
 fetch("https://imdb8.p.rapidapi.com/title/get-top-rated-tv-shows", {
 	"method": "GET",
-  
+ 
 
 })
 .then(response => response.json())
@@ -35,7 +36,7 @@ fetch("https://imdb8.p.rapidapi.com/title/get-top-rated-tv-shows", {
     
      fetch("https://imdb8.p.rapidapi.com/title/get-meta-data?" + text + "&region=US", {
 	"method": "GET",
-   
+
 
 })
 .then(newResponse => newResponse.json())
@@ -56,6 +57,7 @@ fetch("https://imdb8.p.rapidapi.com/title/get-top-rated-tv-shows", {
         const series = document.createElement('p');
         const release = document.createElement('p');
 
+            div.classList.add("card");
             div.appendChild(img);
             img.src = newArray[s].title.image.url;
             img.alt = newArray[s].title.title;
@@ -71,7 +73,7 @@ fetch("https://imdb8.p.rapidapi.com/title/get-top-rated-tv-shows", {
                 };
             div.appendChild(release);
             release.textContent = "Release Date: " + newArray[s].releaseDate;
-            body.appendChild(div);
+            cont.appendChild(div);
         
         
         
