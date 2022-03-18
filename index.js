@@ -3,7 +3,7 @@ window.onload = function(){
     const cont = document.getElementById('container');
 fetch("https://imdb8.p.rapidapi.com/title/get-top-rated-tv-shows", {
 	"method": "GET",
- 
+  
 
 })
 .then(response => response.json())
@@ -36,7 +36,7 @@ fetch("https://imdb8.p.rapidapi.com/title/get-top-rated-tv-shows", {
     
      fetch("https://imdb8.p.rapidapi.com/title/get-meta-data?" + text + "&region=US", {
 	"method": "GET",
-
+   
 
 })
 .then(newResponse => newResponse.json())
@@ -80,6 +80,7 @@ fetch("https://imdb8.p.rapidapi.com/title/get-top-rated-tv-shows", {
     }
     console.log(newArray[1]);
     console.log(newArray[13]);
+    console.log(dataArray.length);
 })
 .catch(err => {
 	console.error(err);
