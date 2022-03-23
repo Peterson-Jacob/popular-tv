@@ -65,66 +65,8 @@ fetch("https://imdb8.p.rapidapi.com/title/get-top-rated-tv-shows", {
         }
     };
 
-    
-     fetch("https://imdb8.p.rapidapi.com/title/get-meta-data?" + text + "&region=US",{
-	"method": "GET",
-    headers
-})
-
-.then(newResponse => newResponse.json())
-.then(newData =>{
-    
-    let z = 0;
-    
-    while (newData[showArray[z]]) {
-        newArray.push(newData[showArray[z]]);
-        z++;
-    }
-
-    fetch("https://imdb8.p.rapidapi.com/title/get-meta-data?" + textTwo + "&region=US", {
-	"method": "GET",
-    headers  
-})
-
-.then(newResponse => newResponse.json())
-.then(newData =>{
-    
-    let z = 51;
-    while (newData[showArray[z]]) {
-        newArray.push(newData[showArray[z]]);
-        z++;
-    }
-
-   
-    fetch("https://imdb8.p.rapidapi.com/title/get-meta-data?" + textThree + "&region=US", {
-        "method": "GET",
-        headers  
-    })
-    
-    .then(newResponse => newResponse.json())
-    .then(newData =>{
-        
-        let z = 101;
-        while (newData[showArray[z]]) {
-            newArray.push(newData[showArray[z]]);
-            z++;
-        }
-    
-        fetch("https://imdb8.p.rapidapi.com/title/get-meta-data?" + textFour + "&region=US", {
-        "method": "GET",
-        headers  
-    })
-    
-    .then(newResponse => newResponse.json())
-    .then(newData =>{
-        
-        let z = 151;
-        while (newData[showArray[z]]) {
-            newArray.push(newData[showArray[z]]);
-            z++;
-        }
-    
-        for(let s = 0; s < newArray.length; s++){
+    function myFunction(v){
+        for(let s = v; s < newArray.length; s++){
             const div = document.createElement('div');
             const img = document.createElement('img');
             const title = document.createElement('h1');
@@ -150,7 +92,72 @@ fetch("https://imdb8.p.rapidapi.com/title/get-top-rated-tv-shows", {
                 release.textContent = "Release Date: " + newArray[s].releaseDate;
                 cont.appendChild(div);
         }
+    }
+
+    
+     fetch("https://imdb8.p.rapidapi.com/title/get-meta-data?" + text + "&region=US",{
+	"method": "GET",
+    headers
+})
+
+.then(newResponse => newResponse.json())
+.then(newData =>{
+    
+    let z = 0;
+    
+    while (newData[showArray[z]]) {
+        newArray.push(newData[showArray[z]]);
+        z++;
+    }
+
+    myFunction(0);
+
+    fetch("https://imdb8.p.rapidapi.com/title/get-meta-data?" + textTwo + "&region=US", {
+	"method": "GET",
+    headers  
+})
+
+.then(newResponse => newResponse.json())
+.then(newData =>{
+    
+    let z = 51;
+    while (newData[showArray[z]]) {
+        newArray.push(newData[showArray[z]]);
+        z++;
+    }
+    
+    myFunction(50);
+   
+    fetch("https://imdb8.p.rapidapi.com/title/get-meta-data?" + textThree + "&region=US", {
+        "method": "GET",
+        headers  
+    })
+    
+    .then(newResponse => newResponse.json())
+    .then(newData =>{
         
+        let z = 101;
+        while (newData[showArray[z]]) {
+            newArray.push(newData[showArray[z]]);
+            z++;
+        }
+       
+        myFunction(100);
+
+        fetch("https://imdb8.p.rapidapi.com/title/get-meta-data?" + textFour + "&region=US", {
+        "method": "GET",
+        headers  
+    })
+    
+    .then(newResponse => newResponse.json())
+    .then(newData =>{
+        
+        let z = 151;
+        while (newData[showArray[z]]) {
+            newArray.push(newData[showArray[z]]);
+            z++;
+        }
+        myFunction(150);
        
  })
 .catch(err => {
