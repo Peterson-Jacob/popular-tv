@@ -16,6 +16,7 @@ fetch("https://imdb8.p.rapidapi.com/title/get-top-rated-tv-shows", {
     let textTwo = "";
     let textThree = "";
     let textFour = "";
+    let textFive = "";
     let i = 0;
     let y = 0;
     const dataArray = [];
@@ -62,6 +63,14 @@ fetch("https://imdb8.p.rapidapi.com/title/get-top-rated-tv-shows", {
         textFour += "ids=" + showArray[x];
         }else{
             textFour += "&ids=" + showArray[x];
+        }
+    };
+
+    for (let x = 201; x <= 250; x++) {
+        if(x == 201){
+        textFive += "ids=" + showArray[x];
+        }else{
+            textFive += "&ids=" + showArray[x];
         }
     };
 
@@ -158,6 +167,27 @@ fetch("https://imdb8.p.rapidapi.com/title/get-top-rated-tv-shows", {
             z++;
         }
         myFunction(150);
+
+        fetch("https://imdb8.p.rapidapi.com/title/get-meta-data?" + textFive + "&region=US", {
+            "method": "GET",
+            headers  
+        })
+        
+        .then(newResponse => newResponse.json())
+        .then(newData =>{
+            
+            let z = 201;
+            while (newData[showArray[z]]) {
+                newArray.push(newData[showArray[z]]);
+                z++;
+            }
+            myFunction(200);
+            
+           
+     })
+    .catch(err => {
+        console.error(err);
+     }); 
        
  })
 .catch(err => {
