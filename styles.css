@@ -31,7 +31,20 @@ body{
     box-shadow: 0px 0px 30px #00a8d6;
     position: relative;
     overflow: inherit;
-   
+    opacity: 0.8;
+}
+
+.card:nth-child(2n + 0){
+    box-shadow: 0px 0px 30px rgb(206, 0, 206);
+}
+
+.card:nth-child(3n + 0){
+    box-shadow: 0px 0px 30px rgb(1, 206, 1);
+}
+
+
+.card:hover{
+    opacity: 1;
 }
 
 .card img{
@@ -127,8 +140,8 @@ body{
     }
 
     .card{
-        width: 300px;
-        height: 735px;
+        width: 44%;
+        height: auto;
         padding: 10px;
         margin: 20px;
 
@@ -143,7 +156,7 @@ body{
     }
 
     .card{
-        width: 325px;
+        width: 40%;
         margin: 25px;
     }
 
@@ -155,17 +168,31 @@ body{
         font-size: 3.5rem;
     }
 
+  
 
     .card{
-        width: 330px;
-        height: 725px;
+        width: 28%;
+        height: auto;
     }
 }
 
 @media only screen and (min-width: 1600px){
 
+  
+
     .card{
-        width: 425px;
+        width: 20%;
+        
+    }
+}
+
+
+@media only screen and (min-width: 2000px){
+
+  
+
+    .card{
+        width: 17%;
         
     }
 }
